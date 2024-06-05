@@ -1,36 +1,37 @@
 import 'package:flutter/material.dart';
 import '../model1/pegawai.dart';
 import 'pegawai_detail.dart';
+import 'pegawai_item.dart';
+import 'pegawai_form.dart';
 
 class PegawaiPage extends StatefulWidget {
   const PegawaiPage({super.key});
 
-  @override 
+  @override
   State<PegawaiPage> createState() => _PegawaiPageState();
-} 
+}
+
 class _PegawaiPageState extends State<PegawaiPage> {
   @override
-Widget build(BuildContext context) {
-return Scaffold( 
-appBar: AppBar(title: const Text("Data Rumah Sakit")),
- body: ListView(
-   children: [
-   GestureDetector(
-    child: Card(
-    child: ListTile(
-    title: const Text("Pegawai"),
-),
-),
-  onTap: (){
-Pegawai pegawai = new Pegawai(namaPegawai: "Detail Pegawai");
- Navigator.push(
-   context,
-   MaterialPageRoute(
-     builder: (context) => PegawaiDetail(pegawai: pegawai)));
-   },
-  ),
-         ],
-           ),
-           );
-            } 
-          }
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Data RS"),
+        actions: [
+          GestureDetector(
+            child: const Icon(Icons.add),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => PegawaiForm()));
+            },
+          )
+        ],
+      ),
+      body: ListView(
+        children: [
+          PegawaiItem(pegawai: Pegawai(namaPegawai: "Pegawai")),
+        ],
+      ),
+    );
+  }
+}
